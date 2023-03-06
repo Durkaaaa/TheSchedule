@@ -10,17 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Common.Interfaces;
 
-namespace TheSchedule.View
+namespace UiDesktopApp3.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Page1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Page1 : INavigableView<ViewModels.DataViewModel>
     {
-        public MainWindow()
+        public ViewModels.DataViewModel ViewModel
         {
+            get;
+        }
+
+        public Page1(ViewModels.DataViewModel viewModel)
+        {
+            ViewModel = viewModel;
+
             InitializeComponent();
         }
     }
