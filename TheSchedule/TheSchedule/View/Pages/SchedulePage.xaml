@@ -1,0 +1,164 @@
+﻿<Page 
+    x:Class="TheSchedule.View.Pages.SchedulePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:TheSchedule.View.Pages"
+    mc:Ignorable="d" 
+    d:DesignHeight="660" 
+    d:DesignWidth="1130"
+    FontFamily="Century Schoolbook"
+    Title="SchedulePage">
+
+    <Page.Resources>
+        <Style
+            TargetType="{x:Type DataGridCell}">
+            <Setter
+                Property="Template">
+                <Setter.Value>
+                    <ControlTemplate
+                        TargetType="{x:Type DataGridCell}">
+                        <Border>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Grid
+                                    Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="25"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock 
+                                        Text="{Binding Subject.Title}"/>
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Text="{Binding Cabinet.CabinetNumber}"/>
+                                </Grid>
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center">
+                                    <Run Text="{Binding LessonPeriod.StartTime, StringFormat=HH:mm}"/>
+                                    <Run Text=" - "/>
+                                    <Run Text="{Binding LessonPeriod.EndTime, StringFormat=HH:mm}"/>
+                                </TextBlock>
+
+                                <TextBlock
+                                    Grid.Row="2"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Teacher.FullName}"
+                                    Margin="0,5,0,5"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid
+        Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid
+            BorderThickness="0"
+            Background="Transparent"
+            HeadersVisibility="Column"
+            Grid.Row="1"
+            Grid.Column="2"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            ItemsSource="{Binding Monday}"
+            CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Понедельник"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid
+            BorderThickness="0"
+            Background="Transparent"
+            Grid.Row="1"
+            Grid.Column="3"
+            HeadersVisibility="Column"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            ItemsSource="{Binding Tuesday}"
+            CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Вторник"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid
+            BorderThickness="0"
+            Background="Transparent"
+            Grid.Row="1"
+            Grid.Column="4"
+            HeadersVisibility="Column"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            ItemsSource="{Binding Wednesday}"
+            CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Среда"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid
+            BorderThickness="0"
+            Background="Transparent"
+            Grid.Row="1"
+            Grid.Column="5"
+            HeadersVisibility="Column"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            ItemsSource="{Binding Thursday}"
+            CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Четверг"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid
+            BorderThickness="0"
+            Background="Transparent"
+            Grid.Row="1"
+            Grid.Column="6"
+            HeadersVisibility="Column"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            ItemsSource="{Binding Friday}"
+            CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Пятница"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

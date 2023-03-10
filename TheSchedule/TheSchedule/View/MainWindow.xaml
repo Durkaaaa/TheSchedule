@@ -1,12 +1,173 @@
-﻿<Window x:Class="TheSchedule.View.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TheSchedule.View"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+﻿<Window 
+    x:Class="TheSchedule.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TheSchedule.View"
+    xmlns:vm="clr-namespace:TheSchedule.ViewModel"
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    FontFamily="Century Schoolbook"
+    Title="Расписание"
+    Height="750"     
+    Width="1200">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <Style
+            TargetType="ListViewItem">
+            <Setter 
+                Property="Template">
+                <Setter.Value>
+                    <ControlTemplate
+                        TargetType="ListViewItem">
+                        <Border
+                            CornerRadius="5"
+                            BorderBrush="{StaticResource BorderBrush}"
+                            BorderThickness="1"
+                            Margin="5">
+                            <Grid
+                                Background="{TemplateBinding Background}">
+                                <StackPanel
+                                    Orientation="Horizontal">
+                                    <Image 
+                                        Style="{StaticResource Image}"
+                                        Margin="4,3,0,3"
+                                        Source="\Resources\Icon\IconSchedule.png"/>
+
+                                    <TextBlock
+                                        Style="{StaticResource TextBlock}"
+                                        Margin="10,0,0,0"
+                                        Text="Класс "/>
+
+                                    <TextBlock
+                                        Style="{StaticResource TextBlock}"
+                                        Text="{Binding Title}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid
+        Background="{StaticResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu
+            Background="DarkGray">
+            <MenuItem 
+                Header="Файл">
+                <MenuItem 
+                    Header="Выход"/>
+            </MenuItem>
+
+            <MenuItem 
+                Header="Таблицы">
+                <MenuItem
+                    Header="Предметы"/>
+                <MenuItem
+                    Header="Преподователи"/>
+                <MenuItem
+                    Header="Кабинеты"/>
+            </MenuItem>
+
+            <MenuItem>
+                <MenuItem.Header>
+                    <Border>
+                        <Grid>
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <Image 
+                                    Source="\Resources\Icon\IconSchedule.png"/>
+
+                                <TextBlock
+                                    Text="Создать расписание"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+
+        <Grid
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Menu-->
+            <Border
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="2">
+                <StackPanel>
+                    <!--Аккаунт-->
+                    <Border
+                        Margin="0,0,0,8"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0,0,0,2">
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Image 
+                                Style="{StaticResource Image}"
+                                Margin="4,0,0,0"
+                                Source="/Resources/Icon/IconAccount.png">
+                                <Image.InputBindings>
+                                    <MouseBinding 
+                                        Gesture="LeftClick" 
+                                        Command=""/>
+                                </Image.InputBindings>
+                            </Image>
+
+                            <TextBlock
+                                Style="{StaticResource TextBlock}"
+                                Margin="10,0,0,0">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding 
+                                        Gesture="LeftClick" 
+                                        Command=""/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+
+                            <Image 
+                                Style="{StaticResource Image}"
+                                Margin="10,4,0,4"
+                                Source="/Resources/Icon/IconExit.png">
+                                <Image.InputBindings>
+                                    <MouseBinding
+                                        Gesture="LeftClick"
+                                        Command=""/>
+                                </Image.InputBindings>
+                            </Image>
+                        </StackPanel>
+                    </Border>
+
+                    <!--Расписание-->
+                    <ListView
+                        MaxHeight="530"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        ItemsSource="{Binding Class}"
+                        SelectedItem="{Binding SelectedClass}"/>
+                </StackPanel>
+            </Border>
+
+            <!--Content-->
+            <Frame
+                Content="{Binding Frame}"
+                Grid.Column="1"
+                x:Name="FramePage"
+                NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Window>
