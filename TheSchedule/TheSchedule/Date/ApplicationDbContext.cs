@@ -13,6 +13,7 @@ namespace TheSchedule.Date
         
         public virtual DbSet<Authorization> Authorizations { get; set; }
         public virtual DbSet<Cabinet> Cabinets { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<DayOfTheWeek> DayOfTheWeeks { get; set; }
         public virtual DbSet<LessonPeriod> LessonPeriods { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
